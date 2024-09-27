@@ -572,6 +572,7 @@ li.repaly .time {
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
+    margin-bottom: 0 !important;
     color: #222;
     background-color: #fff;
     background-clip: padding-box;
@@ -627,6 +628,7 @@ li.repaly .time {
     width: 100%;
     cursor: pointer;
     color: #343945;
+    padding-top: 5;
     font-weight: 400;
     text-transform: capitalize;
     font-size: 13px;
@@ -685,7 +687,7 @@ button:focus {
     text-decoration: none;
     background: #F6F7FA;
     border-radius: 8px;
-    padding: 8px 8px;
+    padding: 12px 8px;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.2;
