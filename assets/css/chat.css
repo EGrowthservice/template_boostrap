@@ -232,7 +232,9 @@ message-area
 .chat-area .modal-dialog-scrollable {
     height: 100% !important;
 }
-
+.modal-dialog-scrollable{
+    height: 325px;
+}
 .chatbox {
     width: auto;
     overflow: hidden;
