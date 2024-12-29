@@ -1,5 +1,7 @@
 <div id="still" class="container-fluid p-0 tab-pane">
     <h2>Still</h2>
+
+
     <!-- Nội dung của tab Pending -->
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
@@ -13,6 +15,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
+        @if ($data->where('approved', '!=2')->where('status', 1)->count() > 0)
         <tbody>
             @foreach ($data as $item)
             @if ($item->status==1 && $item->approved!=2 )
@@ -55,19 +58,19 @@
                     @elseif($item->approved == 2)
                     <span class="badge bg-label-danger">Rejected</span>
                     @endif
-                    <td> @if($item->status == 1 && $item->approved!=2  )
+                <td> @if($item->status == 1 && $item->approved!=2 )
                     <span class="  text-primary">In stock</span>
-                    @else 
+                    @else
                     <span class="  text-danger">Out of stock</span>
                     @endif
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm text-center text-primary" style="position: relative;"
-                        data-bs-toggle="modal" data-bs-target="#modal1{{ $item->sale_new_id }}">
+                        data-bs-toggle="modal" data-bs-target="#modal5{{ $item->sale_new_id }}">
                         <i class="fas fa-eye"></i>
                         <span class="tooltip-text eye">View</span>
                     </button>
-                    <div class="modal fade" id="modal1{{ $item->sale_new_id }}" tabindex="-1"
+                    <div class="modal fade" id="modal5{{ $item->sale_new_id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -240,6 +243,18 @@
                     </button>
                 </form>
             </li>
+            <li>
+                <a onclick="confirmDelete(event, {{ $item->sale_new_id }})">
+                    <form id="delete-form-{{ $item->sale_new_id }}"
+                        action="{{ route('sale_news.destroy', $item->sale_new_id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="dropdown-item">
+                            <span><i class="fa-solid fa-trash me-1"></i></span>Delete
+                        </button>
+                    </form>
+                </a>
+            </li>
 
         </ul>
     </div>
@@ -254,5 +269,10 @@
 
 <!-- end item -->
 </tbody>
+@else
 </table>
+<p class="   mt-1">No data available in table !</p>
+@endif
+
+
 </div>

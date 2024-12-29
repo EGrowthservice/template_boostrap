@@ -65,7 +65,7 @@ class BlogController extends Controller
             $staff = Staff::find($userId);
 
             if (!$staff) {
-               
+                // Nếu người dùng không phải là staff, trả về thông báo không đủ quyền
                 return redirect()->back()->with('alert', [
                     'type' => 'error',
                     'message' => 'You do not have sufficient privileges.'
@@ -203,19 +203,33 @@ class BlogController extends Controller
     {
         try {
             $blog = Blog::findOrFail($id);
+    
+            // Đảo ngược trạng thái
             $blog->status = $blog->status == 1 ? 0 : 1;
             $blog->save();
-
-            $statusMessage = $blog->status == 1 ? 'Hiển thị' : 'Ẩn';
-
+    
+            // Xác định loại thông báo và nội dung
+            $type = $blog->status == 1 ? 'success' : 'success';
+            $message = $blog->status == 1 
+                ? 'Blog status has been changed to "Active".' 
+                : 'Blog status has been changed to "Inactive".';
+    
+            // Trả về phản hồi JSON
             return response()->json([
                 'status' => $blog->status,
-                'alert' => "Blog status updated to {$statusMessage}"
+                'alert' => [
+                    'type' => $type,
+                    'message' => $message
+                ]
             ]);
         } catch (\Exception $e) {
+            // Xử lý lỗi
             return response()->json([
                 'status' => 'error',
-                'alert' => 'Error: ' . $e->getMessage()
+                'alert' => [
+                    'type' => 'error',
+                    'message' => 'An error has occurred!: ' . $e->getMessage()
+                ]
             ]);
         }
     }

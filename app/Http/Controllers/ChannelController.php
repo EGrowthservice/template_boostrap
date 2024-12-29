@@ -289,16 +289,23 @@ class ChannelController extends Controller
 
             $channel->status = $channel->status == 1 ? 0 : 1;
             $channel->save();
-
-
+        
+    
             return response()->json([
                 'status' => $channel->status,
-                'alert' => $channel->status == 1 ? 'Active' : 'Inactive',
+                'alert' => [
+                    'type' => 'success',
+                    'message' => 'Channel update status successfully.',
+                ],
             ]);
+            
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'alert' => 'Error: ' . $e->getMessage(),
+                'alert' => [
+                    'type' => 'error',
+                    'message' => 'Error: ' . $e->getMessage(),
+                ],
             ]);
         }
     }

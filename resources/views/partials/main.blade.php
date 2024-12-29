@@ -481,7 +481,7 @@
                                         title="{{ $item->isFavorited ? 'Added to wishlist' : 'Add to wishlist' }}">
                                         <i class="{{ $item->isFavorited ? 'fas fa-heart' : 'far fa-heart' }}"></i>
                                     </button>
-                                </form>
+                                </form> 
 
 
                             </div><!-- End .product-action -->

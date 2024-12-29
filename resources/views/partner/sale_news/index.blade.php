@@ -41,19 +41,18 @@
                 </li>
                 @else
                 @endif
-                @if ($data->where('approved', 1)->where('status', 1)->count() > 0)
+               
                 <li class="nav-item me-1 position-relative">
                     <a class="nav-link" data-bs-toggle="tab" href="#still">Still</a>
 
                 </li>
-                @else
-                @endif
                
+
                 <li class="nav-item me-1 position-relative">
                     <a class="nav-link" data-bs-toggle="tab" href="#sold">Sold</a>
 
                 </li>
-              
+
 
 
 
@@ -67,7 +66,7 @@
                             <div class="tab-content p-0">
 
                                 <!-- All news Tab -->
-                                 @include('partner.sale_news.tabs.all')
+                                @include('partner.sale_news.tabs.all')
                                 <!-- approved tab -->
                                 @include('partner.sale_news.tabs.approved')
 
@@ -88,29 +87,7 @@
 
                             <!-- JavaScript -->
 
-                            <script>
-                            @if(session('message')) <
-                                div class = "alert alert-success" >
-                                <
-                                strong > Success! < /strong> {{ session('message') }} < /
-                            div >
-                                @endif
-
-                            @if(session('alert')) <
-                                div class = "alert alert-{{ session('alert')['type'] }}" >
-                                <
-                                strong > {
-                                    {
-                                        ucfirst(session('alert')['type'])
-                                    }
-                                }! < /strong> {{ session('alert')['message'] }} < /
-                            div >
-                                @endif
-                            </script>
-
-
-
-                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            
                             <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
                             <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
                             <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
@@ -122,5 +99,6 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('/../admin/assets/js/status-salenew-channel.js') }}"></script> 
 
 @endsection

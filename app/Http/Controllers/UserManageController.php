@@ -98,7 +98,7 @@ class UserManageController extends Controller
         ->where('is_delete', null)
         ->where('approved',1)
         ->paginate(5);
-     
+      
         $sale_news1 = $user->saleNews()->with('sub_category', 'firstImage')
        
         ->where('is_delete', null)

@@ -106,17 +106,17 @@ $(document).on('click', '.btn-remove', function(e) {
 
     // Lấy like_id từ input hidden trong form chứa nút
     var likeId = $(this).closest('form').find('input[name="like_id"]').val();
-    var row = $(this).closest('tr'); // Lấy dòng (row) chứa mục cần xóa
+    var row = $(this).closest('tr'); 
 
     $.ajax({
         url: '/wishlist/' + likeId, // URL của route destroy
-        type: 'DELETE', // Phương thức gửi yêu cầu là DELETE
+        type: 'DELETE',  
         data: {
-            _token: '{{ csrf_token() }}', // CSRF token
+            _token: '{{ csrf_token() }}',  
         },
         success: function(response) {
             if (response.success) {
-                // Hiển thị thông báo thành công với SweetAlert
+                
                 Swal.fire({
                     icon: 'success',
                     title: response.message,
@@ -126,7 +126,7 @@ $(document).on('click', '.btn-remove', function(e) {
                     timer: 3000,
                     timerProgressBar: true
                 });
-                // Xóa dòng khỏi bảng ngay lập tức
+              
                 row.remove();
 
                 // Kiểm tra nếu danh sách không còn sản phẩm nào

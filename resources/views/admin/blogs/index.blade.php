@@ -190,25 +190,8 @@
 
                             <!-- JavaScript -->
 
-                            <script>
-                            @if(session('message')) <
-                                div class = "alert alert-success" >
-                                <
-                                strong > Success! < /strong> {{ session('message') }} < /
-                            div >
-                                @endif
-
-                            @if(session('alert')) <
-                                div class = "alert alert-{{ session('alert')['type'] }}" >
-                                <
-                                strong > {
-                                    {
-                                        ucfirst(session('alert')['type'])
-                                    }
-                                }! < /strong> {{ session('alert')['message'] }} < /
-                            div >
-                                @endif
-                            </script>
+                            
+                            
 
                             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                             <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -222,4 +205,25 @@
         </div>
     </div>
 </div>
+@if (session('alert'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    Toast.fire({
+        icon: "{{ session('alert')['type'] }}",
+        title: "{{ session('alert')['message'] }}"
+    });
+</script>
+@endif
+<script src="{{ asset('/../admin/assets/js/status-blogs.js') }}"></script> 
 @endsection
+ 

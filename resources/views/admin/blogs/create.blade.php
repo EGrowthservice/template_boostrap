@@ -10,10 +10,7 @@
                 <h4 class="mb-1">Add A New Blog</h4>
             </div>
             <div class="d-flex align-content-center flex-wrap gap-4">
-                <div class="d-flex gap-4">
-                    <button class="btn btn-label-secondary">Discard</button>
-                    <button class="btn btn-label-primary">Save draft</button>
-                </div>
+               
                 <!-- Đổi nút Publish thành nút submit -->
                 <button type="submit" form="blog-form" class="btn btn-primary" id="btn-publish-product">Publish</button>
             </div>

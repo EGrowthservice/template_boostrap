@@ -111,12 +111,14 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('script-link-css')
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
 <script src="{{ asset('admin/assets/js/ckeditor.js') }}"></script>
 <script>
+    
 document.getElementById('btnBrowse').addEventListener('click', function() {
     document.getElementById('fileInput').click();
 });

@@ -160,15 +160,20 @@
                 \Carbon\Carbon::now()->diffInHours($endTime, false) %
                 24,
                 ); // Số giờ còn lại (làm tròn xuống số nguyên)
-                @endphp
 
-                @if ($remainingDays > 0)
-                {{ $remainingDays }} day
-                @endif
+                if ($remainingDays <= 0 && $item->approved != 2) {
+                    $item->approved = 2; // Đổi trạng thái sang 2
+                    $item->save(); // Lưu lại vào cơ sở dữ liệu
+                    }
+                    @endphp
 
-                @if ($remainingHours > 0)
-                {{ $remainingHours }} hours
-                @endif
+                    @if ($remainingDays > 0)
+                    {{ $remainingDays }} day
+                    @endif
+
+                    @if ($remainingHours > 0)
+                    {{ $remainingHours }} hours
+                    @endif
             </p>
     </td>
 </tr>

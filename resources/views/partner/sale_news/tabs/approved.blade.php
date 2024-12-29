@@ -241,7 +241,18 @@
                     </button>
                 </form>
             </li>
-
+            <li>
+                <a onclick="confirmDelete(event, {{ $item->sale_new_id }})">
+                    <form id="delete-form-{{ $item->sale_new_id }}"
+                        action="{{ route('sale_news.destroy', $item->sale_new_id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="dropdown-item">
+                            <span><i class="fa-solid fa-trash me-1"></i></span>Delete
+                        </button>
+                    </form>
+                </a>
+            </li>
         </ul>
     </div>
 </td>

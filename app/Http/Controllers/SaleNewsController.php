@@ -888,7 +888,7 @@ class SaleNewsController extends Controller
             // Thêm thông báo vào session sau khi thay đổi trạng thái
             session()->flash('alert', [
                 'type' => 'success',
-                'message' => "Status has been updated to{$statusMessage}!"
+                'message' => "Status has been updated to {$statusMessage}!"
             ]);
 
             // Redirect về trang trước đó (không trả về JSON nữa)

@@ -15,12 +15,7 @@ class WishlistController extends Controller
 
         try {
             // Check if the user is logged in
-            if (!$user) {
-                if ($request->ajax()) {
-                    return response()->json(['type' => 'error', 'message' => 'You need to log in to add items to your favorites list.'], 401); // Return error if it's an AJAX request
-                }
-                return redirect()->route('login')->with('alert', ['type' => 'error', 'message' => 'You need to log in to add items to your favorites list.']);
-            }
+            
 
             // Validate the input data
             $request->validate([
@@ -116,9 +111,9 @@ class WishlistController extends Controller
         if (!Auth::check()) {
             return response()->json(['type' => 'error', 'message' => 'You need to log in to manage your wishlist.'], 401);
         }
-
+       
         $user = Auth::user();
-
+        
         try {
             $request->validate([
                 'sale_new_id' => 'required|integer|exists:sale_news,sale_new_id',

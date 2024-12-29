@@ -130,5 +130,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 timerProgressBar: true
             });
         }
-    });
+    }); 
 });

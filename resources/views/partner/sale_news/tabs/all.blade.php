@@ -1,6 +1,6 @@
 <div id="all" class="container-fluid p-0 tab-pane active">
     <h2>All news</h2>
-    @if ($data->count() > 0)
+  
     <table id="example" class="table table-striped" style="width:100%">
 
         <thead>
@@ -14,6 +14,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
+       
         <tbody>
             @foreach ($data as $item)
             <tr>
@@ -240,6 +241,18 @@
                     </button>
                 </form>
             </li>
+            <li>
+                <a onclick="confirmDelete(event, {{ $item->sale_new_id }})">
+                    <form id="delete-form-{{ $item->sale_new_id }}"
+                        action="{{ route('sale_news.destroy', $item->sale_new_id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="dropdown-item">
+                            <span><i class="fa-solid fa-trash me-1"></i></span>Delete
+                        </button>
+                    </form>
+                </a>
+            </li>
 
         </ul>
     </div>
@@ -253,8 +266,6 @@
 
 <!-- end item -->
 </tbody>
-@else
-<p class='text-center text-danger'>No sale news here, please create a new product news!</p>
-@endif
+ 
 </table>
 </div>
